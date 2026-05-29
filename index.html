@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Biodata Diri -   SAYA</title>
+    <style>
+        /* --- CSS STYLING DENGAN WARNA HITAM, UNGU & AKSEN NEON --- */
+        :root {
+            --bg-color: #0b0713; /* Hitam pekat dengan tint ungu gelap */
+            --card-bg: #160f29; /* Ungu gelap untuk kontainer utama */
+            --text-color: #f1e9ff; /* Putih keunguan terang */
+            --neon-purple: #bc34fa; /* Warna Ungu Neon */
+            --neon-cyan: #00f0ff; /* Warna Cyan/Biru Neon untuk kontras */
+            --neon-glow: 0 0 10px #bc34fa, 0 0 20px #bc34fa;
+            --neon-cyan-glow: 0 0 10px #00f0ff, 0 0 20px #00f0ff;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.6;
+            padding-bottom: 50px;
+            /* Efek gradasi pendaran lampu dari atas */
+            background-image: radial-gradient(circle at 50% 15%, #2c1654 0%, #0b0713 70%);
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        /* Header / Profil Utama */
+        header {
+            text-align: center;
+            padding: 40px 20px;
+            background: rgba(22, 15, 41, 0.7);
+            border-radius: 15px;
+            margin-bottom: 30px;
+            border: 2px solid var(--neon-purple);
+            box-shadow: var(--neon-glow), inset 0 0 15px rgba(188, 52, 250, 0.3);
+            backdrop-filter: blur(10px);
+        }
+
+        .profile-img {
+            width: 130px;
+            height: 130px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid var(--neon-cyan);
+            box-shadow: var(--neon-cyan-glow);
+            margin-bottom: 15px;
+        }
+
+        header h1 {
+            font-size: 2.2rem;
+            margin-bottom: 5px;
+            text-shadow: var(--neon-glow);
+            letter-spacing: 1px;
+        }
+
+        header p {
+            color: var(--neon-cyan);
+            font-weight: 500;
+            text-shadow: 0 0 5px #00f0ff;
+        }
+
+        /* Tombol Interaktif */
+        .btn-greet {
+            background-color: transparent;
+            color: #fff;
+            border: 2px solid var(--neon-cyan);
+            padding: 10px 25px;
+            font-weight: bold;
+            border-radius: 25px;
+            cursor: pointer;
+            margin-top: 15px;
+            transition: all 0.3s ease;
+            text-shadow: 0 0 5px #00f0ff;
+            box-shadow: inset 0 0 8px rgba(0, 240, 255, 0.2);
+        }
+
+        .btn-greet:hover {
+            background-color: var(--neon-cyan);
+            color: #0b0713;
+            box-shadow: var(--neon-cyan-glow);
+            transform: scale(1.05);
+        }
+
+        /* Bagian / Seksi */
+        section {
+            background-color: rgba(22, 15, 41, 0.8);
+            padding: 25px;
+            border-radius: 15px;
+            margin-bottom: 25px;
+            border: 1px solid rgba(188, 52, 250, 0.4);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+        }
+
+        section h2 {
+            font-size: 1.6rem;
+            border-bottom: 2px solid var(--neon-purple);
+            padding-bottom: 8px;
+            margin-bottom: 20px;
+            color: var(--neon-purple);
+            text-shadow: 0 0 5px rgba(188, 52, 250, 0.6);
+        }
+
+        /* Menggunakan flexbox vertikal agar kartu foto potret tersusun rapi ke bawah */
+        .grid-layout {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        /* Kartu Horizontal: Foto Vertikal di Kiri, Teks di Kanan */
+        .card {
+            background-color: #0b0713;
+            border-radius: 12px;
+            overflow: hidden;
+            border: 1px solid rgba(188, 52, 250, 0.3);
+            transition: transform 0.3s ease, border-color 0.3s ease;
+            display: flex;
+            flex-direction: row;
+        }
+
+        .card:hover {
+            transform: translateX(5px);
+            border-color: var(--neon-cyan);
+            box-shadow: 0 0 10px rgba(0, 240, 255, 0.2);
+        }
+
+        /* Container untuk mempertahankan aspek rasio potret asli (1153 x 1536) */
+        .card-img-container {
+            flex: 0 0 150px; /* Lebar foto di layar laptop/komputer */
+            max-width: 150px;
+            aspect-ratio: 1153 / 1536; /* Mengunci rasio potret */
+            overflow: hidden;
+            border-right: 1px solid rgba(188, 52, 250, 0.3);
+        }
+
+        .card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover; /* Menghindari foto menjadi gepeng */
+        }
+
+        .card-body {
+            padding: 20px;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .card-body h3 {
+            margin-bottom: 8px;
+            font-size: 1.2rem;
+            color: var(--neon-cyan);
+        }
+
+        /* Media Player */
+        .media-player {
+            width: 100%;
+            margin-top: 10px;
+            border-radius: 8px;
+        }
+
+        audio.media-player {
+            filter: hue-rotate(270deg) brightness(0.9); /* Menyesuaikan aksen bar audio ke arah warna ungu */
+        }
+
+        .music-item {
+            background-color: #0b0713;
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 10px;
+            border: 1px solid rgba(0, 240, 255, 0.2);
+            text-align: center;
+        }
+
+        /* Indikator Timer Detik */
+        .custom-timer {
+            margin-top: 10px;
+            font-size: 0.9rem;
+            color: var(--neon-cyan);
+            font-weight: bold;
+            text-shadow: 0 0 5px rgba(0, 240, 255, 0.5);
+        }
+
+        /* Tampilan responsif jika dibuka di HP layar kecil */
+        @media (max-width: 520px) {
+            .card {
+                flex-direction: column;
+            }
+            .card-img-container {
+                flex: none;
+                max-width: 100%;
+                width: 100%;
+                height: 380px;
+                border-right: none;
+                border-bottom: 1px solid rgba(188, 52, 250, 0.3);
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        
+        <header>
+            <img src="image/nazzer 7.jpeg" alt="Foto Profil" class="profile-img" onerror="this.src='https://via.placeholder.com/150/160f29/00f0ff?text=VIZOM'">
+            <h1>MUHAMMAD RAFLY NAZZER</h1>
+            <p>Web Developer & Track Cycling Enthusiast</p>
+            <button class="btn-greet" onclick="sapaPengunjung()">Sapa Pengunjung</button>
+        </header>
+
+        <section id="hobi">
+            <h2>Hobi</h2>
+            <div class="grid-layout">
+                <div class="card">
+                    <div class="card-img-container">
+                        <img src="image/nazzer 2.jpeg" alt="Hobi Sepeda" onerror="this.src='https://via.placeholder.com/1153x1536/160f29/bc34fa?text=Track+Bike'">
+                    </div>
+                    <div class="card-body">
+                        <h3>Bersepeda (Fixed Gear)</h3>
+                        <p>tempat gw galau,menghilangkan stress,dan becerita.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="game">
+            <h2>Game Favorit</h2>
+            <div class="grid-layout">
+                <div class="card">
+                    <div class="card-img-container">
+                        <img src="image/ML.jpeg" alt="Game 1" onerror="this.src='https://via.placeholder.com/1153x1536/160f29/bc34fa?text=Mobile+Legends'">
+                    </div>
+                    <div class="card-body">
+                        <h3>Mobile Legends</h3>
+                        <p>Minimal rank IMORTAL!!!!.</p>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-img-container">
+                        <img src="image/EPEP.jpeg" alt="Game 2" onerror="this.src='https://via.placeholder.com/1153x1536/160f29/bc34fa?text=Genshin+Impact'">
+                    </div>
+                    <div class="card-body">
+                        <h3>Genshin Impact</h3>
+                        <p>cinta sementara epep selamanya   .</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="musik">
+            <h2>Musik Favorit</h2>
+            <div class="music-item">
+                <p><strong style="color: var(--neon-purple);">Judul Lagu - Nama Artis</strong></p>
+                <audio id="myAudio" controls class="media-player">
+                    <source src="musik/LAGU GW.mp3.mpeg" type="audio/mpeg">
+                    Browser kamu tidak mendukung pemutar audio.
+                </audio>
+                <div class="custom-timer" id="audioTimer">Durasi: 0 / 30 detik</div>
+            </div>
+        </section>
+
+    </div>
+
+    <script>
+        const audio = document.getElementById('myAudio');
+        const timerDisplay = document.getElementById('audioTimer');
+
+        // Memantau setiap perubahan durasi musik yang sedang berjalan
+        audio.addEventListener('timeupdate', function() {
+            let currentSeconds = Math.floor(audio.currentTime);
+            
+            // Update teks display durasi di web
+            timerDisplay.innerText = "Durasi: " + currentSeconds + " / 30 detik";
+
+            // JIKA MUSIK MENCAPAI ATAU MELEBIHI 30 DETIK
+            if (audio.currentTime >= 30) {
+                audio.currentTime = 0; // Mengembalikan posisi musik ke detik ke-0
+                audio.play();          // Memutar kembali musik secara otomatis (mengulang)
+            }
+        });
+
+        // Fungsi interaktif tombol sapaan
+        function sapaPengunjung() {
+            alert('Terima kasih sudah berkunjung ke halaman biodata VIZOM yang bernuansa Cyber-Neon!');
+        }
+    </script>
+
+</body>
+</html>
